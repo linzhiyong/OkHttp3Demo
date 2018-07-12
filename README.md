@@ -1,4 +1,7 @@
 # OkHttp3Demo
+博客地址：https://www.jianshu.com/p/af144d662bfd
+服务端地址：https://github.com/linzhiyong/SpringMVCDemo
+
 OkHttp是一个处理网络请求的开源项目,是安卓端最火热的轻量级框架，本文主要介绍OkHttp3的基本使用方法。
 结合自己的项目经验，主要从以下几方面介绍：
 
