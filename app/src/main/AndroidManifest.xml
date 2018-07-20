@@ -29,6 +29,9 @@
         <activity
             android:name=".activity.OkHttpDemoDownloadFileActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.OkHttpCookieActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

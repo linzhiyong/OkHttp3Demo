@@ -36,6 +36,7 @@ public class LMainActivity extends LBaseActivity {
             "POST请求提交混合Form表单",
             "POST请求提交单/多文件（带进度条）",
             "GET请求下载文件（带进度条）",
+            "Cookie持久化",
     }, {
             "com.lzy.org.okhttp3.activity.OkHttpDemoActivity",
             "com.lzy.org.okhttp3.activity.OkHttpDemoActivity",
@@ -45,6 +46,7 @@ public class LMainActivity extends LBaseActivity {
             "com.lzy.org.okhttp3.activity.OkHttpDemoActivity",
             "com.lzy.org.okhttp3.activity.OkHttpDemoUploadFileActivity",
             "com.lzy.org.okhttp3.activity.OkHttpDemoDownloadFileActivity",
+            "com.lzy.org.okhttp3.activity.OkHttpCookieActivity",
     }};
 
     @Override

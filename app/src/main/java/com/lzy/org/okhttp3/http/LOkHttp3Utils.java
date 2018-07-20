@@ -1,7 +1,10 @@
 package com.lzy.org.okhttp3.http;
 
+import android.content.Context;
 import android.util.Log;
 
+import com.lzy.org.okhttp3.http.cookie.CookieJarImpl;
+import com.lzy.org.okhttp3.http.cookie.MemoryCookieStore;
 import com.lzy.org.okhttp3.listener.ProgressListener;
 
 import java.io.File;
@@ -75,6 +78,51 @@ public class LOkHttp3Utils {
         return okHttpClient;
     }
 
+    /**
+     * 构建OkHttpClient对象，设置相应全局参数，持久化cookie
+     *
+     * @return OkHttpClient
+     */
+    public static OkHttpClient okHttpClient1(Context context) {
+        if (okHttpClient == null) {
+            OkHttpClient.Builder builder = new OkHttpClient.Builder()
+                    .readTimeout(HTTP_TIME_OUT, TimeUnit.SECONDS)
+                    .writeTimeout(HTTP_TIME_OUT, TimeUnit.SECONDS)
+                    .connectTimeout(HTTP_TIME_OUT, TimeUnit.SECONDS)
+                    .addInterceptor(new Interceptor() {
+                        @Override
+                        public Response intercept(Chain chain) throws IOException {
+                            Request request = chain.request();
+                            Response response = chain.proceed(request);
+                            return response;
+
+                        }
+                    })
+                    .addNetworkInterceptor(new Interceptor() {
+                        @Override
+                        public Response intercept(Chain chain) throws IOException {
+                            Request request = chain.request();
+                            Response response = chain.proceed(request);
+                            return response;
+                        }
+                    })
+//                    .cookieJar(new CookieJarImpl(new PersistentCookieStore(context)));
+                    .cookieJar(new CookieJarImpl(new MemoryCookieStore()));
+            okHttpClient = builder.build();
+        }
+
+        return okHttpClient;
+    }
+
+    /**
+     * 清除所有缓存cookie
+     */
+    public static void clearCookies() {
+        if (okHttpClient != null && okHttpClient.cookieJar() instanceof CookieJarImpl) {
+            CookieJarImpl cookieJar = (CookieJarImpl) okHttpClient.cookieJar();
+            cookieJar.getCookieStore().removeAll();
+        }
+    }
 
     /**
      * 创建文件requestbody，自定义进度监听器
